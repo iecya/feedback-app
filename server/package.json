@@ -11,7 +11,8 @@
         "start": "node index.js",
         "server": "nodemon index.js",
         "client": "npm run start --prefix client",
-        "dev": "concurrently \"npm run server\" \"npm run client\""
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "generate": "rc-autocomplete"
     },
     "author": "",
     "license": "ISC",
@@ -22,6 +23,7 @@
         "mongoose": "^5.6.9",
         "nodemon": "^1.19.1",
         "passport": "^0.4.0",
-        "passport-google-oauth20": "^2.0.0"
+        "passport-google-oauth20": "^2.0.0",
+        "react-autocomplete-cli": "0.0.3"
     }
 }
