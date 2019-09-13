@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { Link } from 'react-router-dom';
 import SurveyField from './SurveyField';
 
-class SurveyForm extends Component {
-    fieldsConfig = [
-        { name: 'title', label: 'Survey Title' },
-        { name: 'subject', label: 'Subject Line' },
-        { name: 'body', label: 'Email Body' },
-        { name: 'emails', label: 'Recipient List' }
-    ];
+const fieldsConfig = [
+    { name: 'title', label: 'Survey Title' },
+    { name: 'subject', label: 'Subject Line' },
+    { name: 'body', label: 'Email Body' },
+    { name: 'emails', label: 'Recipient List' }
+];
 
+class SurveyForm extends Component {
     renderFields() {
         return (
             <div>
-                {this.fieldsConfig.map(({ label, name }) => (
+                {fieldsConfig.map(({ label, name }) => (
                     <Field
                         key={name}
                         type="text"
@@ -35,13 +36,38 @@ class SurveyForm extends Component {
                     )}
                 >
                     {this.renderFields()}
-                    <button type="submit">Submit</button>
+                    <Link
+                        to="/surveys"
+                        className="red btn-flat left white-text"
+                    >
+                        Cancel
+                    </Link>
+                    <button
+                        className="teal btn-flat right white-text"
+                        type="submit"
+                    >
+                        Next
+                        <i className="material-icons right">done</i>
+                    </button>
                 </form>
             </div>
         );
     }
 }
 
+function validate(values) {
+    const errors = {};
+
+    fieldsConfig.forEach(({ name }) => {
+        if (!values[name]) {
+            errors[name] = 'You must provide a value';
+        }
+    });
+
+    return errors;
+}
+
 export default reduxForm({
+    validate,
     form: 'surveyForm'
 })(SurveyForm);
