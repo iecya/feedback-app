@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default () => {
+export default ({ input, label }) => {
     return (
         <div>
-            <input type="text" />
+            <label htmlFor="">{label}</label>
+            <input {...input} />
         </div>
     );
 };
