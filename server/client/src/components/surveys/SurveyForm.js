@@ -16,13 +16,7 @@ class SurveyForm extends Component {
         return (
             <div>
                 {fieldsConfig.map(({ label, name }) => (
-                    <Field
-                        key={name}
-                        type="text"
-                        component={SurveyField}
-                        name={name}
-                        label={label}
-                    />
+                    <Field key={name} type="text" component={SurveyField} name={name} label={label} />
                 ))}
             </div>
         );
@@ -31,22 +25,12 @@ class SurveyForm extends Component {
     render() {
         return (
             <div>
-                <form
-                    onSubmit={this.props.handleSubmit(values =>
-                        console.log(values)
-                    )}
-                >
+                <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
                     {this.renderFields()}
-                    <Link
-                        to="/surveys"
-                        className="red btn-flat left white-text"
-                    >
+                    <Link to="/surveys" className="red btn-flat left white-text">
                         Cancel
                     </Link>
-                    <button
-                        className="teal btn-flat right white-text"
-                        type="submit"
-                    >
+                    <button className="teal btn-flat right white-text" type="submit">
                         Next
                         <i className="material-icons right">done</i>
                     </button>
