@@ -3,36 +3,25 @@ import { reduxForm, Field } from 'redux-form';
 import SurveyField from './SurveyField';
 
 class SurveyForm extends Component {
+    fieldsConfig = [
+        { name: 'title', label: 'Survey Title' },
+        { name: 'subject', label: 'Subject Line' },
+        { name: 'body', label: 'Email Body' },
+        { name: 'emails', label: 'Recipient List' }
+    ];
+
     renderFields() {
         return (
             <div>
-                <Field
-                    type="text"
-                    name="title"
-                    component={SurveyField}
-                    label="Survey Title"
-                />
-
-                <Field
-                    type="text"
-                    name="subject"
-                    component={SurveyField}
-                    label="Subject Line"
-                />
-
-                <Field
-                    type="text"
-                    name="body"
-                    component={SurveyField}
-                    label="Email Body"
-                />
-
-                <Field
-                    type="text"
-                    name="emails"
-                    component={SurveyField}
-                    label="Recipient List"
-                />
+                {this.fieldsConfig.map(({ label, name }) => (
+                    <Field
+                        key={name}
+                        type="text"
+                        component={SurveyField}
+                        name={name}
+                        label={label}
+                    />
+                ))}
             </div>
         );
     }
