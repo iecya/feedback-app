@@ -9,11 +9,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import App from './components/App';
 import reducers from './reducers';
 
-const store = createStore(
-    reducers,
-    {},
-    composeWithDevTools(applyMiddleware(reduxThunk))
-);
+import axios from 'axios';
+window.axios = axios;
+
+const store = createStore(reducers, {}, composeWithDevTools(applyMiddleware(reduxThunk)));
 
 ReactDOM.render(
     <Provider store={store}>
