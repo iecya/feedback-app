@@ -1,5 +1,5 @@
 function localtunnel {
-	lt -s fnandfd --port 5000
+	lt -s fdandfn --port 5000
 }
 
 until localtunnel; do
